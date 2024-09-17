@@ -9,6 +9,7 @@ const allColumns = [
 
 type Props = {
   registrations?: Registration[];
+  handleUpdateRegistration: (registration: Registration) => void;
 };
 
 const Collumns = (props: Props) => {
@@ -28,6 +29,9 @@ const Collumns = (props: Props) => {
                       <RegistrationCard
                         data={registration}
                         key={registration.id}
+                        handleUpdateRegistration={
+                          props.handleUpdateRegistration
+                        }
                       />
                     );
                   }

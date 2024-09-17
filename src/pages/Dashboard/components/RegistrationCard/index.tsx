@@ -11,10 +11,12 @@ import * as S from "./styles";
 
 type Props = {
   data: Registration;
+  handleUpdateRegistration: (registration: Registration) => void;
 };
 
 const RegistrationCard = (props: Props) => {
-  const { employeeName, email, admissionDate, status } = props.data;
+  const { data, handleUpdateRegistration } = props;
+  const { employeeName, email, admissionDate, status } = data;
 
   return (
     <S.Card>
@@ -32,13 +34,34 @@ const RegistrationCard = (props: Props) => {
       </S.IconAndText>
       <S.Actions>
         {status === "REVIEW" && (
-          <ButtonSmall bgcolor="rgb(255, 145, 154)">Reprovar</ButtonSmall>
+          <ButtonSmall
+            bgcolor="rgb(255, 145, 154)"
+            onClick={() =>
+              handleUpdateRegistration({ ...data, status: "REPROVED" })
+            }
+          >
+            Reprovar
+          </ButtonSmall>
         )}
         {status === "REVIEW" && (
-          <ButtonSmall bgcolor="rgb(155, 229, 155)">Aprovar</ButtonSmall>
+          <ButtonSmall
+            bgcolor="rgb(155, 229, 155)"
+            onClick={() =>
+              handleUpdateRegistration({ ...data, status: "APPROVED" })
+            }
+          >
+            Aprovar
+          </ButtonSmall>
         )}
         {status !== "REVIEW" && (
-          <ButtonSmall bgcolor="#ff8858">Revisar novamente</ButtonSmall>
+          <ButtonSmall
+            bgcolor="#ff8858"
+            onClick={() =>
+              handleUpdateRegistration({ ...data, status: "REVIEW" })
+            }
+          >
+            Revisar novamente
+          </ButtonSmall>
         )}
         <HiOutlineTrash />
       </S.Actions>

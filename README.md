@@ -24,10 +24,10 @@ Sinta-se a vontade para refatorar, criar novas pastas, componentes, hooks, utils
 ### Tela Dashboard
 
 - [x] Implementar `GET` ao carregar a pagina e ao fazer pequisa por `CPF`
-- [ ] Filtrar os cards por coluna, usando o status.
-- [ ] Implementar `PUT` ao clicar em Reprovar e alterar o status para `REPROVED`
-- [ ] Implementar `PUT` ao clicar em Aprovar e alterar o status para `APPROVED`
-- [ ] Implementar `PUT` ao clicar em Revisar novamente e alterar o status para `REVIEW`
+- [x] Filtrar os cards por coluna, usando o status.
+- [x] Implementar `PUT` ao clicar em Reprovar e alterar o status para `REPROVED`
+- [x] Implementar `PUT` ao clicar em Aprovar e alterar o status para `APPROVED`
+- [x] Implementar `PUT` ao clicar em Revisar novamente e alterar o status para `REVIEW`
 - [ ] Implementar `DELETE` ao clicar no lixeira no card.
 - [x] O botão de `Reprovar` e `Aprovar` só deve aparecer em admissões com o status `REVIEW`
 - [x] O botão `Revisar novamente` só deve aparecer em admissões com o status `REPROVED` ou `APPROVED`

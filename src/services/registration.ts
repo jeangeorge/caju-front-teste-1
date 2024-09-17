@@ -9,3 +9,7 @@ export const getRegistrations = async (
 
   return data;
 };
+
+export const updateRegistration = async (registration: Registration) => {
+  await api.put(`/registrations/${registration.id}`, registration);
+};
