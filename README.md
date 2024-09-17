@@ -35,7 +35,7 @@ Sinta-se a vontade para refatorar, criar novas pastas, componentes, hooks, utils
 - [ ] Todas as ações devem ter modal de confirmação e uma notificação de sucesso ou erro
 - [x] Na pesquisa por CPF realizar a requisição automaticamente ao preencher um CPF válido
 - [x] Adicionar máscara de CPF no campo de pesquisa.
-- [ ] Atualizar os dados (refetch) ao clicar no ícone de atualizar
+- [x] Atualizar os dados (refetch) ao clicar no ícone de atualizar
 
 ### Tela Cadastro
 

@@ -12,11 +12,12 @@ import * as S from "./styles";
 
 type Props = {
   handleSearch: (value: string) => void;
+  handleRefresh: () => void;
 };
 
 const PLACEHOLDER_MESSAGE = "Digite um CPF válido";
 
-const SearchBar = ({ handleSearch }: Props) => {
+const SearchBar = ({ handleSearch, handleRefresh }: Props) => {
   const history = useHistory();
 
   const [value, setValue] = useState("");
@@ -42,7 +43,7 @@ const SearchBar = ({ handleSearch }: Props) => {
         error={invalidCpf ? PLACEHOLDER_MESSAGE : ""}
       />
       <S.Actions>
-        <IconButton aria-label="refetch">
+        <IconButton aria-label="refetch" onClick={handleRefresh}>
           <HiRefresh />
         </IconButton>
         <Button onClick={() => goToNewAdmissionPage()}>Nova Admissão</Button>

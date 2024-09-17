@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { isValidCPF } from "@brazilian-utils/brazilian-utils";
 
 import { getRegistrations } from "~/services";
 import { Columns, SearchBar } from "./components";
 import * as S from "./styles";
-import { isValidCPF } from "@brazilian-utils/brazilian-utils";
+import { useConfirmationModal } from "~/contexts";
 
 const DashboardPage = () => {
+  const { openModal } = useConfirmationModal();
+
   const [cpf, setCpf] = useState("");
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["registrations", cpf],
     queryFn: () => getRegistrations(cpf),
   });
@@ -27,9 +30,15 @@ const DashboardPage = () => {
     }
   };
 
+  const handleRefresh = () => {
+    openModal("Tem certeza que deseja atualizar a listagem de admissões?", () =>
+      refetch()
+    );
+  };
+
   return (
     <S.Container>
-      <SearchBar handleSearch={handleSearch} />
+      <SearchBar handleSearch={handleSearch} handleRefresh={handleRefresh} />
 
       {isLoading ? <>Loading</> : <Columns registrations={data} />}
     </S.Container>
