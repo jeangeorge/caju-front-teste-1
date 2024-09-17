@@ -10,29 +10,36 @@ import { ButtonSmall } from "~/components/Buttons";
 import * as S from "./styles";
 
 type Props = {
-  data: any;
+  data: Registration;
 };
 
 const RegistrationCard = (props: Props) => {
+  const { employeeName, email, admissionDate, status } = props.data;
+
   return (
     <S.Card>
       <S.IconAndText>
         <HiOutlineUser />
-        <h3>{props.data.employeeName}</h3>
+        <h3>{employeeName}</h3>
       </S.IconAndText>
       <S.IconAndText>
         <HiOutlineMail />
-        <p>{props.data.email}</p>
+        <p>{email}</p>
       </S.IconAndText>
       <S.IconAndText>
         <HiOutlineCalendar />
-        <span>{props.data.admissionDate}</span>
+        <span>{admissionDate}</span>
       </S.IconAndText>
       <S.Actions>
-        <ButtonSmall bgcolor="rgb(255, 145, 154)">Reprovar</ButtonSmall>
-        <ButtonSmall bgcolor="rgb(155, 229, 155)">Aprovar</ButtonSmall>
-        <ButtonSmall bgcolor="#ff8858">Revisar novamente</ButtonSmall>
-
+        {status === "REVIEW" && (
+          <ButtonSmall bgcolor="rgb(255, 145, 154)">Reprovar</ButtonSmall>
+        )}
+        {status === "REVIEW" && (
+          <ButtonSmall bgcolor="rgb(155, 229, 155)">Aprovar</ButtonSmall>
+        )}
+        {status !== "REVIEW" && (
+          <ButtonSmall bgcolor="#ff8858">Revisar novamente</ButtonSmall>
+        )}
         <HiOutlineTrash />
       </S.Actions>
     </S.Card>
