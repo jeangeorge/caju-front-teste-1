@@ -13,13 +13,14 @@ export const Input = styled.input`
   font-size: 16px;
   line-height: 18px;
   font-weight: normal;
-  border-radius:8px;
+  border-radius: 8px;
   :focus {
     outline: none;
     border: 1px solid #007c89;
     box-shadow: inset 0 0 0 1px #007c89;
   }
 `;
+
 type Props = {
   label?: string;
   error?: string;
@@ -27,10 +28,10 @@ type Props = {
 
 const TextField = (props: Props) => {
   return (
-    <div>
+    <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
       <label htmlFor={props.id}>{props.label}</label>
       <Input {...props} />
-      <span style={{fontSize: 12, color: 'red'}}>{props.error}</span>
+      <span style={{ fontSize: 12, color: "red" }}>{props.error}</span>
     </div>
   );
 };

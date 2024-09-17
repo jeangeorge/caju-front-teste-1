@@ -1,20 +1,46 @@
+import { useState } from "react";
 import { HiRefresh } from "react-icons/hi";
 import { useHistory } from "react-router-dom";
+import { formatCPF, isValidCPF } from "@brazilian-utils/brazilian-utils";
+
 import Button from "~/components/Buttons";
 import { IconButton } from "~/components/Buttons/IconButton";
 import TextField from "~/components/TextField";
 import routes from "~/router/routes";
+
 import * as S from "./styles";
-export const SearchBar = () => {
+
+type Props = {
+  handleSearch: (value: string) => void;
+};
+
+const PLACEHOLDER_MESSAGE = "Digite um CPF válido";
+
+const SearchBar = ({ handleSearch }: Props) => {
   const history = useHistory();
+
+  const [value, setValue] = useState("");
+
+  const invalidCpf = value !== "" && !isValidCPF(value);
 
   const goToNewAdmissionPage = () => {
     history.push(routes.newUser);
   };
-  
+
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = formatCPF(event.target.value);
+    setValue(newValue);
+    handleSearch(newValue);
+  };
+
   return (
     <S.Container>
-      <TextField  placeholder="Digite um CPF válido" />
+      <TextField
+        placeholder={PLACEHOLDER_MESSAGE}
+        value={value}
+        onChange={onChange}
+        error={invalidCpf ? PLACEHOLDER_MESSAGE : ""}
+      />
       <S.Actions>
         <IconButton aria-label="refetch">
           <HiRefresh />
@@ -24,3 +50,5 @@ export const SearchBar = () => {
     </S.Container>
   );
 };
+
+export default SearchBar;
