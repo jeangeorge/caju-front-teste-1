@@ -10,6 +10,12 @@ export const getRegistrations = async (
   return data;
 };
 
+export const createRegistration = async (
+  registration: Omit<Registration, "id">
+) => {
+  await api.post("/registrations/", registration);
+};
+
 export const updateRegistration = async (registration: Registration) => {
   await api.put(`/registrations/${registration.id}`, registration);
 };

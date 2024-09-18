@@ -1,29 +1,56 @@
-import TextField from "~/components/TextField";
-import * as S from "./styles";
-import Button from "~/components/Buttons";
+import { formatCPF } from "@brazilian-utils/brazilian-utils";
 import { HiOutlineArrowLeft } from "react-icons/hi";
+
+import TextField from "~/components/TextField";
+import Button from "~/components/Buttons";
 import { IconButton } from "~/components/Buttons/IconButton";
-import { useHistory } from "react-router-dom";
-import routes from "~/router/routes";
+
+import * as S from "./styles";
+import useNewUserPage from "./useNewUserPage";
 
 const NewUserPage = () => {
-  const history = useHistory();
-  const goToHome = () => {
-    history.push(routes.dashboard);
-  };
+  const { methods, goToHome, onSubmit } = useNewUserPage();
+
+  const {
+    formState: { errors },
+    register,
+    setValue,
+  } = methods;
 
   return (
     <S.Container>
-      <S.Card>
+      <S.Form onSubmit={onSubmit}>
         <IconButton onClick={() => goToHome()} aria-label="back">
           <HiOutlineArrowLeft size={24} />
         </IconButton>
-        <TextField placeholder="Nome" label="Nome" />
-        <TextField placeholder="Email" label="Email" type="email" />
-        <TextField placeholder="CPF" label="CPF" />
-        <TextField label="Data de admissão" type="date" />
-        <Button onClick={() => {}}>Cadastrar</Button>
-      </S.Card>
+        <TextField
+          error={errors.employeeName?.message}
+          placeholder="Nome"
+          label="Nome"
+          {...register("employeeName")}
+        />
+        <TextField
+          error={errors.email?.message}
+          placeholder="Email"
+          label="Email"
+          type="email"
+          {...register("email")}
+        />
+        <TextField
+          error={errors.cpf?.message}
+          placeholder="CPF"
+          label="CPF"
+          {...register("cpf")}
+          onChange={(event) => setValue("cpf", formatCPF(event.target.value))}
+        />
+        <TextField
+          error={errors.admissionDate?.message}
+          label="Data de admissão"
+          type="date"
+          {...register("admissionDate")}
+        />
+        <Button type="submit">Cadastrar</Button>
+      </S.Form>
     </S.Container>
   );
 };
