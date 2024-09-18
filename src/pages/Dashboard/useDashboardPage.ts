@@ -25,7 +25,7 @@ const useDashboardPage = () => {
     queryFn: () => getRegistrations(cpf),
   });
 
-  const { mutate: updateRegistrationMutation, isPending } = useMutation({
+  const { mutate: updateRegistrationMutation } = useMutation({
     mutationFn: updateRegistration,
     onSuccess: () => {
       toast.success("Registro atualizado com sucesso!", {
