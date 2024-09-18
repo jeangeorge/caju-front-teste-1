@@ -11,11 +11,12 @@ import * as S from "./styles";
 
 type Props = {
   data: Registration;
-  handleUpdateRegistration: (registration: Registration) => void;
+  onDeleteRegistration: (registration: Registration) => void;
+  onUpdateRegistration: (registration: Registration) => void;
 };
 
 const RegistrationCard = (props: Props) => {
-  const { data, handleUpdateRegistration } = props;
+  const { data, onDeleteRegistration, onUpdateRegistration } = props;
   const { employeeName, email, admissionDate, status } = data;
 
   return (
@@ -37,7 +38,7 @@ const RegistrationCard = (props: Props) => {
           <ButtonSmall
             bgcolor="rgb(255, 145, 154)"
             onClick={() =>
-              handleUpdateRegistration({ ...data, status: "REPROVED" })
+              onUpdateRegistration({ ...data, status: "REPROVED" })
             }
           >
             Reprovar
@@ -47,7 +48,7 @@ const RegistrationCard = (props: Props) => {
           <ButtonSmall
             bgcolor="rgb(155, 229, 155)"
             onClick={() =>
-              handleUpdateRegistration({ ...data, status: "APPROVED" })
+              onUpdateRegistration({ ...data, status: "APPROVED" })
             }
           >
             Aprovar
@@ -56,14 +57,12 @@ const RegistrationCard = (props: Props) => {
         {status !== "REVIEW" && (
           <ButtonSmall
             bgcolor="#ff8858"
-            onClick={() =>
-              handleUpdateRegistration({ ...data, status: "REVIEW" })
-            }
+            onClick={() => onUpdateRegistration({ ...data, status: "REVIEW" })}
           >
             Revisar novamente
           </ButtonSmall>
         )}
-        <HiOutlineTrash />
+        <HiOutlineTrash onClick={() => onDeleteRegistration(data)} />
       </S.Actions>
     </S.Card>
   );

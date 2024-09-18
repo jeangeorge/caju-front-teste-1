@@ -1,19 +1,16 @@
 import { useConfirmationModal } from "~/contexts";
 import { ButtonSmall } from "~/components/Buttons";
+
 import * as S from "./styles";
 
 export const ConfirmationModal = () => {
-  const { message, onConfirm, onCancel, open, closeModal } =
-    useConfirmationModal();
+  const { message, onConfirm, open, closeModal } = useConfirmationModal();
 
   if (!open) {
     return null;
   }
 
   const onClickCancel = () => {
-    if (onCancel) {
-      onCancel();
-    }
     closeModal();
   };
 

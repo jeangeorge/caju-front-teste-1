@@ -9,7 +9,8 @@ const allColumns = [
 
 type Props = {
   registrations?: Registration[];
-  handleUpdateRegistration: (registration: Registration) => void;
+  onDeleteRegistration: (registration: Registration) => void;
+  onUpdateRegistration: (registration: Registration) => void;
 };
 
 const Collumns = (props: Props) => {
@@ -29,9 +30,8 @@ const Collumns = (props: Props) => {
                       <RegistrationCard
                         data={registration}
                         key={registration.id}
-                        handleUpdateRegistration={
-                          props.handleUpdateRegistration
-                        }
+                        onDeleteRegistration={props.onDeleteRegistration}
+                        onUpdateRegistration={props.onUpdateRegistration}
                       />
                     );
                   }

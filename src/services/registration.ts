@@ -13,3 +13,7 @@ export const getRegistrations = async (
 export const updateRegistration = async (registration: Registration) => {
   await api.put(`/registrations/${registration.id}`, registration);
 };
+
+export const deleteRegistration = async (id: string) => {
+  await api.delete(`/registrations/${id}`);
+};

@@ -2,11 +2,16 @@ import { createContext, ReactNode, useContext, useState } from "react";
 
 type Function = () => void;
 
+type OpenModalArgs = {
+  message: string;
+  onConfirm: Function;
+};
+
 type ConfirmationModalContextType = {
   message: string;
   open: boolean;
   onConfirm?: Function;
-  openModal: (message: string, onConfirm?: Function) => void;
+  openModal: ({ message, onConfirm }: OpenModalArgs) => void;
   closeModal: Function;
 };
 
@@ -24,8 +29,8 @@ export const ConfirmationModalProvider = ({
   const [message, setMessage] = useState("");
   const [onConfirm, setOnConfirm] = useState<Function>();
 
-  const openModal = (text: string, onConfirm?: Function) => {
-    setMessage(text);
+  const openModal = ({ message, onConfirm }: OpenModalArgs) => {
+    setMessage(message);
     setOnConfirm(() => onConfirm);
     setOpen(true);
   };

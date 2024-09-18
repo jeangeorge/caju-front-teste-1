@@ -6,4 +6,9 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 
-
+export const LoadingSpinnerContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100px;
+`;
