@@ -3,9 +3,8 @@ import { HiRefresh } from "react-icons/hi";
 import { useHistory } from "react-router-dom";
 import { formatCPF, isValidCPF } from "@brazilian-utils/brazilian-utils";
 
-import Button from "~/components/Buttons";
-import { IconButton } from "~/components/Buttons/IconButton";
-import TextField from "~/components/TextField";
+import { Button, IconButton, TextField } from "~/components";
+
 import routes from "~/router/routes";
 
 import * as S from "./styles";

@@ -2,11 +2,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import Router from "~/router";
+import { ConfirmationModal, Header } from "~/components";
 import { ConfirmationModalProvider } from "~/contexts";
-
-import { Header } from "./components/Header";
-import { ConfirmationModal } from "./components/ConfirmationModal";
+import Router from "~/router";
 
 const queryClient = new QueryClient();
 

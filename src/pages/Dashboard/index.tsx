@@ -1,6 +1,7 @@
-import LoadingSpinner from "~/components/LoadingSpinner";
+import { LoadingSpinner } from "~/components";
 
 import { Columns, SearchBar } from "./components";
+
 import * as S from "./styles";
 
 import useDashboardPage from "./useDashboardPage";

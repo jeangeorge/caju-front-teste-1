@@ -1,9 +1,9 @@
 import { useConfirmationModal } from "~/contexts";
-import { ButtonSmall } from "~/components/Buttons";
+import { ButtonSmall } from "~/components";
 
-import * as S from "./styles";
+import * as S from "./ConfirmationModal.styles";
 
-export const ConfirmationModal = () => {
+const ConfirmationModal = () => {
   const { message, onConfirm, open, closeModal } = useConfirmationModal();
 
   if (!open) {
@@ -38,3 +38,5 @@ export const ConfirmationModal = () => {
     </S.Overlay>
   );
 };
+
+export default ConfirmationModal;

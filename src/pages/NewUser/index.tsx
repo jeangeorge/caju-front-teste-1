@@ -1,9 +1,7 @@
 import { formatCPF } from "@brazilian-utils/brazilian-utils";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 
-import TextField from "~/components/TextField";
-import Button from "~/components/Buttons";
-import { IconButton } from "~/components/Buttons/IconButton";
+import { Button, IconButton, TextField } from "~/components";
 
 import * as S from "./styles";
 import useNewUserPage from "./useNewUserPage";

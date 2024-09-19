@@ -30,6 +30,7 @@ describe("Dashboard", () => {
       "Tem certeza que deseja atualizar a listagem de admissões?"
     );
 
+    cy.contains("button", "Não");
     cy.contains("button", "Sim").click();
 
     cy.contains("h3", "Pronto para revisar").should("exist");

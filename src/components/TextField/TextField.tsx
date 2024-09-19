@@ -1,7 +1,7 @@
 import { InputHTMLAttributes, forwardRef } from "react";
 import styled from "styled-components";
 
-export const Input = styled.input`
+const Input = styled.input`
   padding: 0 8px;
   vertical-align: middle;
   border-radius: 2px;

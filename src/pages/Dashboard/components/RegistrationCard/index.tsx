@@ -5,7 +5,7 @@ import {
   HiOutlineTrash,
 } from "react-icons/hi";
 
-import { ButtonSmall } from "~/components/Buttons";
+import { ButtonSmall } from "~/components";
 
 import * as S from "./styles";
 

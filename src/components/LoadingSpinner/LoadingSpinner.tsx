@@ -1,4 +1,4 @@
-import * as S from "./styles";
+import * as S from "./LoadingSpinner.styles";
 
 const LoadingSpinner = () => (
   <S.Spinner aria-label="spinner" viewBox="0 0 50 50">
