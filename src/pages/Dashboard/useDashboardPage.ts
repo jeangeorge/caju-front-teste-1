@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { isValidCPF } from "@brazilian-utils/brazilian-utils";
 import { toast } from "react-toastify";
 import { useMutation, useQuery } from "@tanstack/react-query";
