@@ -1,43 +1,48 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import Button from "./Button";
+import IconButton from "./IconButton";
 
-describe("Button", () => {
+describe("IconButton", () => {
   it("renders children correctly", () => {
-    render(<Button>Click Me</Button>);
+    render(<IconButton>Click Me</IconButton>);
     const buttonElement = screen.getByText("Click Me");
     expect(buttonElement).toBeInTheDocument();
   });
 
   it("handle click event correctly", () => {
     const onClick = jest.fn();
-    render(<Button onClick={onClick}>Click Me</Button>);
+    render(<IconButton onClick={onClick}>Click Me</IconButton>);
+
     const buttonElement = screen.getByText("Click Me");
     fireEvent.click(buttonElement);
+
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
   it("does not trigger click event when disabled", () => {
     const onClick = jest.fn();
+
     render(
-      <Button disabled onClick={onClick}>
+      <IconButton disabled onClick={onClick}>
         Click Me
-      </Button>
+      </IconButton>
     );
+
     const buttonElement = screen.getByText("Click Me");
     fireEvent.click(buttonElement);
+
     expect(onClick).not.toHaveBeenCalled();
     expect(buttonElement).toBeDisabled();
   });
 
   it("additional HTML attributes", () => {
     render(
-      <Button data-testid="button" aria-label="button">
+      <IconButton data-testid="icon-button" aria-label="icon-button">
         Click Me
-      </Button>
+      </IconButton>
     );
-    const buttonElement = screen.getByTestId("button");
-    expect(buttonElement).toHaveAttribute("aria-label", "button");
+    const buttonElement = screen.getByTestId("icon-button");
+    expect(buttonElement).toHaveAttribute("aria-label", "icon-button");
   });
 });

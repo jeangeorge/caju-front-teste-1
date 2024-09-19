@@ -1,7 +1,7 @@
-import { formatCPF } from "@brazilian-utils/brazilian-utils";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 
 import { Button, IconButton, TextField } from "~/components";
+import { formatCpf } from "~/utils";
 
 import * as S from "./NewUser.styles";
 import useNewUserPage from "./useNewUserPage";
@@ -39,7 +39,7 @@ const NewUserPage = () => {
           placeholder="CPF"
           label="CPF"
           {...register("cpf")}
-          onChange={(event) => setValue("cpf", formatCPF(event.target.value))}
+          onChange={(event) => setValue("cpf", formatCpf(event.target.value))}
         />
         <TextField
           error={errors.admissionDate?.message}

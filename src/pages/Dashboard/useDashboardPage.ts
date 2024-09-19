@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { isValidCPF } from "@brazilian-utils/brazilian-utils";
+
 import { toast } from "react-toastify";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
@@ -8,6 +8,7 @@ import {
   updateRegistration,
 } from "~/services";
 import { useConfirmationModal } from "~/contexts";
+import { isValidCpf } from "~/utils";
 
 const registrationStatusMap = {
   REVIEW: "Pronto para revisar",
@@ -62,7 +63,7 @@ const useDashboardPage = () => {
   });
 
   const onSearch = (value: string) => {
-    const shouldSearch = value === "" || isValidCPF(value);
+    const shouldSearch = value === "" || isValidCpf(value);
     if (shouldSearch) {
       const numericValue = value.replace(/\D/g, "");
       setCpf(numericValue);

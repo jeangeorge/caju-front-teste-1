@@ -1,14 +1,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import { format, parseISO } from "date-fns";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import { useMutation } from "@tanstack/react-query";
+import { z } from "zod";
 
 import routes from "~/router/routes";
 import { createRegistration } from "~/services";
-import { isValidCPF } from "@brazilian-utils/brazilian-utils";
-import { z } from "zod";
+import { isValidCpf } from "~/utils";
 
 const newUserSchema = z.object({
   employeeName: z
@@ -26,7 +26,7 @@ const newUserSchema = z.object({
   cpf: z
     .string()
     .min(1, { message: "Insira um CPF!" })
-    .refine((cpf: string) => isValidCPF(cpf), {
+    .refine((cpf: string) => isValidCpf(cpf), {
       message: "Insira um CPF válido!",
     }),
   admissionDate: z

@@ -1,13 +1,12 @@
 import { ChangeEvent, useState } from "react";
 import { HiRefresh } from "react-icons/hi";
 import { useHistory } from "react-router-dom";
-import { formatCPF, isValidCPF } from "@brazilian-utils/brazilian-utils";
 
 import { Button, IconButton, TextField } from "~/components";
 
 import routes from "~/router/routes";
-
 import * as S from "./styles";
+import { formatCpf, isValidCpf } from "~/utils";
 
 type Props = {
   onSearch: (value: string) => void;
@@ -21,14 +20,14 @@ const SearchBar = ({ onSearch, onRefresh }: Props) => {
 
   const [value, setValue] = useState("");
 
-  const isNotEmptyInvalidCpf = value !== "" && !isValidCPF(value);
+  const isNotEmptyInvalidCpf = value !== "" && !isValidCpf(value);
 
   const goToNewAdmissionPage = () => {
     history.push(routes.newUser);
   };
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const formattedValue = formatCPF(event.target.value);
+    const formattedValue = formatCpf(event.target.value);
     setValue(formattedValue);
     onSearch(formattedValue);
   };

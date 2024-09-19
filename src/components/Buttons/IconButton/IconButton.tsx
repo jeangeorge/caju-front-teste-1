@@ -2,7 +2,7 @@ import IconButtonStyled from "./IconButton.styles";
 
 type IconButtonProps = {
   children?: React.ReactNode;
-} & React.HTMLAttributes<HTMLButtonElement>;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const IconButton = (props: IconButtonProps) => {
   return <IconButtonStyled {...props}>{props.children}</IconButtonStyled>;
