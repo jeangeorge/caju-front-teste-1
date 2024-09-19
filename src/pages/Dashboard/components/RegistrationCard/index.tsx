@@ -62,7 +62,10 @@ const RegistrationCard = (props: Props) => {
             Revisar novamente
           </ButtonSmall>
         )}
-        <HiOutlineTrash onClick={() => onDeleteRegistration(data)} />
+        <HiOutlineTrash
+          aria-label="delete"
+          onClick={() => onDeleteRegistration(data)}
+        />
       </S.Actions>
     </S.Card>
   );
