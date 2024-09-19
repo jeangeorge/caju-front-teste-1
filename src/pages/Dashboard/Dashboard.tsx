@@ -2,7 +2,7 @@ import { LoadingSpinner } from "~/components";
 
 import { Columns, SearchBar } from "./components";
 
-import * as S from "./styles";
+import * as S from "./Dashboard.styles";
 
 import useDashboardPage from "./useDashboardPage";
 

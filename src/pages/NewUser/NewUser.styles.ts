@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Button, _IconButtonStyled } from "~/components";
+import { Button, IconButtonStyled } from "~/components";
 
 export const Container = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ export const Form = styled.form`
   flex-direction: column;
   gap: 16px;
 
-  ${_IconButtonStyled} {
+  ${IconButtonStyled} {
     margin-bottom: 8px;
     align-items: flex-start;
   }

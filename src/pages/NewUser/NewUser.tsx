@@ -3,7 +3,7 @@ import { HiOutlineArrowLeft } from "react-icons/hi";
 
 import { Button, IconButton, TextField } from "~/components";
 
-import * as S from "./styles";
+import * as S from "./NewUser.styles";
 import useNewUserPage from "./useNewUserPage";
 
 const NewUserPage = () => {
