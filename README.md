@@ -70,7 +70,7 @@ https://github.com/typicode/json-server/tree/v0?tab=readme-ov-file#filter
 ## Extras (opcional)
 
 - [x] Testes Unitários `(Obrigátorio para Senior e Tech Lead)`
-- [ ] Testes de Integração `(Obrigátorio para Senior e Tech Lead)`
+- [x] Testes de Integração `(Obrigátorio para Senior e Tech Lead)`
 - [x] End-to-End (E2E)
 - [ ] Configuração de CI/CD com deploy automatizado
 
