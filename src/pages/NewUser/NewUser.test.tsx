@@ -1,11 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import {
-  render,
-  fireEvent,
-  screen,
-  waitFor,
-  act,
-} from "@testing-library/react";
+import { render, fireEvent, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { http, HttpResponse } from "msw";
 import { setupServer } from "msw/node";
@@ -51,15 +45,25 @@ describe("NewUser", () => {
   });
 
   it("empty form validation", async () => {
-    await act(async () => {
-      screen.getByText("Cadastrar").click();
+    fireEvent.click(screen.getByText("Cadastrar"));
+
+    await waitFor(() => {
+      expect(screen.getByText("Insira um nome!")).toBeInTheDocument();
     });
-    expect(screen.getByText("Insira um nome!")).toBeInTheDocument();
-    expect(screen.getByText("Insira um email!")).toBeInTheDocument();
-    expect(screen.getByText("Insira um CPF!")).toBeInTheDocument();
-    expect(
-      screen.getByText("Insira uma data de admissão!")
-    ).toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(screen.getByText("Insira um email!")).toBeInTheDocument();
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText("Insira um CPF!")).toBeInTheDocument();
+    });
+
+    await waitFor(() => {
+      expect(
+        screen.getByText("Insira uma data de admissão!")
+      ).toBeInTheDocument();
+    });
   });
 
   it("name validation", async () => {
@@ -68,22 +72,23 @@ describe("NewUser", () => {
     fireEvent.change(inputName, {
       target: { value: "1" },
     });
-    await act(async () => {
-      screen.getByText("Cadastrar").click();
+    fireEvent.click(screen.getByText("Cadastrar"));
+    await waitFor(() => {
+      expect(
+        screen.getByText("O nome deve conter pelo menos um espaço!")
+      ).toBeInTheDocument();
     });
-    expect(
-      screen.getByText("O nome deve conter pelo menos um espaço!")
-    ).toBeInTheDocument();
 
     fireEvent.change(inputName, {
       target: { value: "1 " },
     });
-    await act(async () => {
-      screen.getByText("Cadastrar").click();
+
+    fireEvent.click(screen.getByText("Cadastrar"));
+    await waitFor(() => {
+      expect(
+        screen.getByText("A primeira letra do nome não pode ser um número!")
+      ).toBeInTheDocument();
     });
-    expect(
-      screen.getByText("A primeira letra do nome não pode ser um número!")
-    ).toBeInTheDocument();
   });
 
   it("email validation", async () => {
@@ -92,10 +97,10 @@ describe("NewUser", () => {
     fireEvent.change(inputEmail, {
       target: { value: "teste@t" },
     });
-    await act(async () => {
-      screen.getByText("Cadastrar").click();
+    fireEvent.click(screen.getByText("Cadastrar"));
+    await waitFor(() => {
+      expect(screen.getByText("Insira um email válido!")).toBeInTheDocument();
     });
-    expect(screen.getByText("Insira um email válido!")).toBeInTheDocument();
   });
 
   it("cpf validation", async () => {
@@ -104,10 +109,10 @@ describe("NewUser", () => {
     fireEvent.change(cpfEmail, {
       target: { value: "11111111111" },
     });
-    await act(async () => {
-      screen.getByText("Cadastrar").click();
+    fireEvent.click(screen.getByText("Cadastrar"));
+    await waitFor(() => {
+      expect(screen.getByText("Insira um CPF válido!")).toBeInTheDocument();
     });
-    expect(screen.getByText("Insira um CPF válido!")).toBeInTheDocument();
   });
 
   it("create registration with success", async () => {

@@ -1,4 +1,4 @@
-import { render, screen, act } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import {
@@ -47,9 +47,7 @@ describe("ConfirmationModalProvider", () => {
       </ConfirmationModalProvider>
     );
 
-    act(() => {
-      screen.getByText("Open Modal").click();
-    });
+    fireEvent.click(screen.getByText("Open Modal"));
 
     expect(screen.getByTestId("message")).toHaveTextContent("Test Message");
     expect(screen.getByTestId("open-status")).toHaveTextContent("Open");
@@ -62,10 +60,8 @@ describe("ConfirmationModalProvider", () => {
       </ConfirmationModalProvider>
     );
 
-    act(() => {
-      screen.getByText("Open Modal").click();
-      screen.getByText("Close Modal").click();
-    });
+    fireEvent.click(screen.getByText("Open Modal"));
+    fireEvent.click(screen.getByText("Close Modal"));
 
     expect(screen.getByTestId("message")).toHaveTextContent("");
     expect(screen.getByTestId("open-status")).toHaveTextContent("Closed");
@@ -80,13 +76,8 @@ describe("ConfirmationModalProvider", () => {
       </ConfirmationModalProvider>
     );
 
-    await act(async () => {
-      screen.getByText("Open Modal").click();
-    });
-
-    await act(async () => {
-      screen.getByText("Confirm").click();
-    });
+    fireEvent.click(screen.getByText("Open Modal"));
+    fireEvent.click(screen.getByText("Confirm"));
 
     expect(onConfirm).toHaveBeenCalled();
   });
