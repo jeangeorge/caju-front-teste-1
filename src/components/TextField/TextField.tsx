@@ -30,8 +30,8 @@ const TextField = forwardRef<HTMLInputElement, Props>(
   ({ label, error, ...props }, ref) => {
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-        <label htmlFor={props.id}>{label}</label>
-        <Input ref={ref} {...props} />
+        <label htmlFor={props.name}>{label}</label>
+        <Input id={props.name} ref={ref} {...props} />
         <span style={{ fontSize: 12, color: "red" }}>{error}</span>
       </div>
     );

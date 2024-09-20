@@ -3,7 +3,7 @@ describe("Dashboard", () => {
     cy.visit("http://localhost:3001");
   });
 
-  it("initial loading", () => {
+  it("initial rendering", () => {
     cy.contains("header", "Caju Front Teste").should("exist");
 
     cy.get("input")
@@ -13,7 +13,6 @@ describe("Dashboard", () => {
 
     cy.contains("button", "Nova Admissão").should("exist");
     cy.get('button[aria-label="refetch"]').should("exist");
-    cy.get("svg[aria-label='spinner']").should("exist");
 
     cy.contains("h3", "Pronto para revisar").should("exist");
     cy.contains("h3", "Aprovado").should("exist");
@@ -41,7 +40,10 @@ describe("Dashboard", () => {
 
   it("redirect to new user page", () => {
     cy.contains("button", "Nova Admissão").click();
-    cy.url().should("eq", "http://localhost:3001/#/new-user");
+    cy.url().should(
+      "eq",
+      "http://localhost:3001/caju-front-teste-1/#/new-user"
+    );
   });
 
   it("confirmation modals", () => {

@@ -1,9 +1,9 @@
 describe("NewUser", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3001/#/new-user");
+    cy.visit("http://localhost:3001/caju-front-teste-1/#/new-user");
   });
 
-  it("initial loading", () => {
+  it("initial rendering", () => {
     cy.get('button[aria-label="back"]').should("exist");
     cy.get('input[name="employeeName"]').should("exist");
     cy.get('input[name="email"]').should("exist");
@@ -54,7 +54,10 @@ describe("NewUser", () => {
     cy.get('input[name="admissionDate"]').type("2024-10-10");
     cy.get('button[type="submit"]').click();
 
-    cy.url().should("eq", "http://localhost:3001/#/dashboard");
+    cy.url().should(
+      "eq",
+      "http://localhost:3001/caju-front-teste-1/#/dashboard"
+    );
 
     cy.get("div[role='alert']")
       .should("exist")
