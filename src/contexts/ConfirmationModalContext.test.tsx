@@ -23,11 +23,7 @@ const TestComponent = ({ onConfirm }: TestComponentProps) => {
       <div data-testid="message">{message}</div>
       <div data-testid="open-status">{open ? "Open" : "Closed"}</div>
 
-      {open && (
-        <>
-          <button onClick={onConfirm}>Confirm</button>
-        </>
-      )}
+      {open && <button onClick={onConfirm}>Confirm</button>}
     </div>
   );
 };
@@ -75,7 +71,7 @@ describe("ConfirmationModalProvider", () => {
     expect(screen.getByTestId("open-status")).toHaveTextContent("Closed");
   });
 
-  it("onConfirm is called correctly", () => {
+  it("onConfirm is called correctly", async () => {
     const onConfirm = jest.fn();
 
     render(
@@ -84,11 +80,13 @@ describe("ConfirmationModalProvider", () => {
       </ConfirmationModalProvider>
     );
 
-    act(() => {
+    await act(async () => {
       screen.getByText("Open Modal").click();
     });
 
-    screen.getByText("Confirm").click();
+    await act(async () => {
+      screen.getByText("Confirm").click();
+    });
 
     expect(onConfirm).toHaveBeenCalled();
   });
